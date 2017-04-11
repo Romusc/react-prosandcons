@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Fact from './Fact';
+import FactForm from './FactForm';
 
-class FactList extends React.Component {
+
+export default class FactList extends React.Component {
 
     constructor() {
       super();
@@ -49,7 +49,7 @@ class FactList extends React.Component {
     }
 
     _switchCon(factID) {
-      var fact = this.state.factData.find(x => x.id == factID);
+      var fact = this.state.factData.find(x => x.id === factID);
       if (fact.type === 'PRO') {
         fact.type = 'CON';
       } else {
@@ -75,7 +75,7 @@ class FactList extends React.Component {
       if (fact.type === "CON") {
         fact.rate *= -1;
       }
-      fact.rate = parseInt(fact.rate)
+      fact.rate = parseInt(fact.rate, 10);
       this.setState({factData: this.state.factData.concat([fact])})
     }
 
@@ -99,87 +99,7 @@ class FactList extends React.Component {
 
     _getFacts() {
       return this.state.factData.map((fact) => {
-        return (<Fact id={fact.id} key={fact.id} type={fact.type} text={fact.text} rate={fact.rate} onDelete={this._deleteFact.bind(this)} onSwitch=                    {this._switchCon.bind(this)} />);
+        return (<Fact id={fact.id} key={fact.id} type={fact.type} text={fact.text} rate={fact.rate} onDelete={this._deleteFact.bind(this)} onSwitch={this._switchCon.bind(this)} />);
       })
     }
 }
-
-class Fact extends React.Component {
-  constructor() {
-    super()
-  }
-
-  render() {
-    var decisionColor = '';
-    this.props.type === "CON" ? decisionColor = "red" : decisionColor = "green";
-    return(
-        <div className="col-md-12 fact">
-          <h4 className="fact-number">Fact {this.props.id}</h4>
-          <div className="row" style={{color: decisionColor}}>
-            <div className="col-md-2 fact-type" onClick={this._handleClick.bind(this)}><h2>{this.props.type}</h2></div>
-            <div className="col-md-8 fact-text"><h2>{this.props.text}</h2></div>
-            <div className="col-md-1 fact-delete"><div className="btn btn-primary" onClick={this._handleDelete.bind(this)}>Delete</div></div>
-            <div className="col-md-1 fact-rate"><h2>{this.props.rate}</h2></div>
-          </div>
-        </div>
-    )
-  }
-
-  _handleClick(e) {
-    e.preventDefault();
-    this.props.onSwitch(this.props.id);
-  }
-
-  _handleDelete(e) {
-    e.preventDefault();
-    this.props.onDelete(this.props.id);
-  }
-}
-
-class FactForm extends React.Component {
-  render() {
-    return(<form className="form-inline" onSubmit={this._handleSubmit.bind(this)}>
-      <div className="form-group">
-        <select className="mb-2 mr-sm-2 form-control" placeholder="Type" ref={(input) => this._type = input}>
-            <option>CON</option>
-            <option>PRO</option>
-        </select>
-        <input className="mb-2 mr-sm-2" placeholder="Text" ref={(input) => this._text = input}/>
-        <input className="mb-2 mr-sm-2" placeholder="Rate" ref={(input) => this._rate = input}/>
-        <button className="btn btn-default mb-2 mr-sm-2" type="submit">Add</button>
-      </div>
-    </form>)
-  }
-
-  _handleSubmit(event) {
-    event.preventDefault();
-    let type = this._type;
-    let text = this._text;
-    let rate = this._rate;
-
-    this.props.addFact(type.value, text.value, rate.value)
-  }
-}
-
-
-
-ReactDOM.render(< FactList name="Should I switch house with my neighbour?" />, document.getElementById('main-container'))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,29 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  padding-top: 40px;
+}
+
+#main-container {
+/*   border: 10px solid blue; */
+}
+
+.fact {
+/*   border: 1px solid pink; */
+}
+
+.decision-title {
+  border-bottom: 10px solid gray
+}
+
+.fact-number {
+  border-bottom: 1px solid gray
+}
+
+.facts-button {
+  border: 1px solid grey;
+}
+
+.facts-button:hover {
+  background: gray;
+  opacity: 0.9;
+  color: white
 }
