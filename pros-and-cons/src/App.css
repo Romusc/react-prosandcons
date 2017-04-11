@@ -1,0 +1,54 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+body {
+  padding-top: 40px;
+}
+
+#main-container {
+/*   border: 10px solid blue; */
+}
+
+.fact {
+/*   border: 1px solid pink; */
+}
+
+.decision-title {
+  border-bottom: 10px solid gray
+}
+
+.fact-number {
+  border-bottom: 1px solid gray
+}
+
+.facts-button {
+  border: 1px solid grey;
+}
+
+.facts-button:hover {
+  background: gray;
+  opacity: 0.9;
+  color: white
+}
